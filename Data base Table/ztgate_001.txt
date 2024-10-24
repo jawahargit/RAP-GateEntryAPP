@@ -1,0 +1,19 @@
+@EndUserText.label : 'Data base table for Gate entry'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table ztgate_001 {
+
+  key client         : abap.clnt not null;
+  key purchase_order : abap.char(10) not null;
+  key gate_entry_no  : abap.char(2) not null;
+  vehicle_num        : abap.char(20);
+  driver_name        : abap.char(30);
+  plant              : abap.char(4);
+  location           : abap.char(30);
+  travel_date        : abap.dats;
+  gate_status        : abap.char(1);
+  lastchangedat      : timestampl;
+
+}
