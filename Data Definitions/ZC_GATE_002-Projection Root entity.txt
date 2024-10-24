@@ -1,0 +1,77 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Projection view for Gate entry'
+@Metadata.ignorePropagatedAnnotations: true
+@Search.searchable : true   
+
+@UI:
+{
+ headerInfo:
+  {
+    typeName: 'Gate_entry',
+    typeNamePlural: 'Gate_entries',
+    title: { type: #STANDARD, value: 'GateEntry' }
+  }
+ }
+define root view entity ZC_GATE_002 
+as projection on  ZI_GATE_002
+
+{
+  @UI.facet: [
+        {
+          id:       'GateEntry',
+          purpose:  #STANDARD,
+          type:     #IDENTIFICATION_REFERENCE,
+          label:    'GateEntry',
+          position: 10 }
+      ]
+          
+   @UI: {
+          lineItem: [ { position: 10, importance: #HIGH, label: 'Purchase_order' } ],
+          identification:[ { position: 10, label: 'Purchase_order' } ],
+          selectionField: [ { position: 10 } ] 
+          }   
+    key Purchase_Order as PurchaseOrder,
+    
+    @UI: {
+        lineItem: [ { position: 20, label: 'GateEntry', importance: #HIGH } ],
+        identification:[ { position: 20, label: 'GateEntry' } ],
+        selectionField: [ { position: 20 } ] 
+      }
+    @Search.defaultSearchElement: true
+    key GateEntry_No as GateEntry,
+    @UI: {
+        lineItem: [ { position: 30, label: 'Vehicle_No', importance: #HIGH } ],
+        identification:[ { position: 30, label: 'Vehicle_No' } ],
+        selectionField: [ { position: 30 } ] 
+      } 
+    Vehicle_Num as VehicleNum,
+   @UI: {
+        lineItem: [ { position: 40, label: 'Driver', importance: #HIGH } ],
+        identification:[ { position: 40, label: 'Driver' } ]
+      }  
+    Driver_Name as DriverName,
+   @UI: {
+        lineItem: [ { position: 50, label: 'Plant' } ]     
+      }    
+    Plant as Plant,
+    @UI: {
+        lineItem: [ { position: 60, label: 'Location' } ],
+        identification:[ { position: 60, label: 'Location' } ]
+      }  
+    Location as Location,
+     @UI: {
+        lineItem: [ { position: 70, label: 'TravelDate' } ],
+        identification:[ { position: 70, label: 'TravelDate' } ]
+      }  
+    Travel_Date as TravelDate,
+    
+    @UI: {
+      lineItem:       [ { position: 80, importance: #HIGH },
+                        { type: #FOR_ACTION, dataAction: 'acceptTransit', label: 'Accept Transit',invocationGrouping: #ISOLATED } ],
+      identification: [ { position: 60, label: 'Status [O(Open)|A(Accepted)|X(Canceled)]' } ]  }
+      Gate_Status     as GateStatus,
+    
+    @UI.hidden: true
+    LastchangedAt as Lastchangedat
+    
+}
