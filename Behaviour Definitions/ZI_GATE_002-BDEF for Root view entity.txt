@@ -1,0 +1,30 @@
+managed implementation in class zbp_i_gate_002 unique;
+strict ( 2 );
+
+define behavior for ZI_GATE_002 alias GATE
+persistent table ztgate_001
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  //field ( readonly ) Purchase_Order, GateEntry_No;
+  action ( features : instance ) acceptTransit result [1] $self;
+  validation validate_po on save {  create; update; field Purchase_Order; }
+ //validation validate_po on save { field Purchase_Order; create; update; }
+ //action ( features : instance ) acceptTransit result [1] $self;
+
+ mapping for ztgate_001 {
+    Purchase_Order = purchase_order; // Map to match persistent table field
+    Gateentry_No = gate_entry_no ;
+    Vehicle_Num = vehicle_num ;
+    Driver_Name = driver_name ;
+    Plant =  plant;
+    Location = location ;
+    Travel_Date = travel_date;
+    Gate_Status = gate_status;
+    LastchangedAt =  lastchangedat ;
+}
+}
