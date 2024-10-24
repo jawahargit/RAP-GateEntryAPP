@@ -1,0 +1,2 @@
+Binding type - Odata V2
+Service Defnition - ZUI_GATE_002
