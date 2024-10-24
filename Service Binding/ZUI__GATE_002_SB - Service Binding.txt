@@ -1,2 +1,4 @@
 Binding type - Odata V2
 Service Defnition - ZUI_GATE_002
+After Activating the Service Binding then Publish the service .
+once service is published , click on Preview button to see local Fiori app in browser running.
