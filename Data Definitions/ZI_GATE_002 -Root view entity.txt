@@ -1,0 +1,16 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'Root view for Gate entry'
+@Metadata.allowExtensions: true
+define root view entity ZI_GATE_002 as select from ztgate_001
+{
+   key purchase_order as Purchase_Order,
+   key gate_entry_no as GateEntry_No,
+   vehicle_num as Vehicle_Num,
+   driver_name as Driver_Name,
+   plant as Plant,
+   location as Location,
+   travel_date as Travel_Date,
+   gate_status as Gate_Status,
+   @Semantics.systemDateTime.lastChangedAt: true           
+   lastchangedat as LastchangedAt 
+   }
