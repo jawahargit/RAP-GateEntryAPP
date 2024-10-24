@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition for gate entry'
+define service ZUI_GATE_002 {
+  expose ZC_GATE_002;
+}
